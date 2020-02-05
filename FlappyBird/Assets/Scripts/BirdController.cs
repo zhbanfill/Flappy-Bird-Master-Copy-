@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
+    public AudioClip scoreSound;
+
+    AudioSource myAuso;
+
     //Indicates if the game has started.
     public static bool gameStarted = false;
 
@@ -54,6 +58,7 @@ public class BirdController : MonoBehaviour
 
     private void Start()
     {
+        myAuso = GetComponent<AudioSource>();
         //Indicate we have not started and the game is not over yet.
         gameStarted = false;
         gameOver = false;
@@ -112,6 +117,8 @@ public class BirdController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //play the score sound when you gain a point
+        myAuso.PlayOneShot(scoreSound);
         //When we enter a trigger region, add a point.
         ++score;
         //Destroy the score object so we don't rescore some how.
