@@ -14,8 +14,11 @@ public class LoseScreen : MonoBehaviour
     public Text highscoreText;
 
     public GameObject loseWindow;
-    
-	void Update ()
+
+    public AudioClip[] buttonclips;
+    public RandomContainer randCont;
+
+    void Update ()
     {
         loseWindow.SetActive(BirdController.gameOver);
 
@@ -42,6 +45,10 @@ public class LoseScreen : MonoBehaviour
 
     public void ResetGame()
     {
+        randCont.clips = buttonclips;
+
+        randCont.PlaySound(false);
+
         //Reload the scene.
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }

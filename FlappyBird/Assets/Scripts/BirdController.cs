@@ -16,6 +16,16 @@ public class BirdController : MonoBehaviour
     //Our highest score obtained.
     public static int highestScore = 0;
 
+    public AudioClip[] flapclips;
+    public AudioClip[] collideclips;
+    public AudioClip[] scoreclips;
+
+
+
+    public RandomContainer randCont;
+        
+   
+
     //Returns the score as a string.
     public static string scoreDisplay
     {
@@ -60,6 +70,9 @@ public class BirdController : MonoBehaviour
 
         //Sets the static score to 0 so that score does not carry over on reload of this scene.
         score = 0;
+
+        randCont = GetComponent<RandomContainer>();
+        
     }
 
     void Update ()
@@ -79,6 +92,10 @@ public class BirdController : MonoBehaviour
 
             //Adds an upwards force.
             rigidbody2D.AddForce(Vector2.up * jumpHeight);
+
+            randCont.clips = flapclips;
+
+            randCont.PlaySound(false);
 
             //Attemps to do a jump animation on our set animator.
             if (animator)
@@ -104,6 +121,10 @@ public class BirdController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        randCont.clips = collideclips;
+
+        randCont.PlaySound(false);
+
         //Indicate the game is over.
         gameOver = true;
         //Change our game objects layer to the death layer.
@@ -114,6 +135,10 @@ public class BirdController : MonoBehaviour
     {
         //When we enter a trigger region, add a point.
         ++score;
+        
+        randCont.clips = scoreclips;
+        randCont.PlaySound(true);
+
         //Destroy the score object so we don't rescore some how.
         Destroy(collision.gameObject);
     }

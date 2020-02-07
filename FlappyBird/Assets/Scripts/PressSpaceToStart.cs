@@ -11,6 +11,9 @@ public class PressSpaceToStart : MonoBehaviour
     {
         //If we press the space key, start the game.
 		if(Input.GetKeyDown(KeyCode.Space))
+
+
+
         {
             BirdController.gameStarted = true;
             player.bodyType = RigidbodyType2D.Dynamic;

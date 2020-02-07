@@ -11,6 +11,11 @@ public class RestartKey : MonoBehaviour
     {
         if(Input.GetKeyDown(restartKey))
         {
+      
+
+
+
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
