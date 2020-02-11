@@ -77,7 +77,7 @@ public class ObjectSpawner : MonoBehaviour
             Instantiate(floor, floorOffset, Quaternion.identity);
         }
         
-        if (backgroundLocalTime >= backgroundSpawnTime)
+        if (backgroundLocalTime >= backgroundSpawnTime && background != null)
         {
             //Set the local time to zero.
             backgroundLocalTime = 0;
